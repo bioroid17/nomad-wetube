@@ -119,7 +119,7 @@ export const finishGithubLogin = async (req, res) => {
     if (!user) {
       user = await User.create({
         avatarUrl: userData.avatar_url,
-        name: userData.name ? userData.name : "No name",
+        name: userData.name ? userData.name : "Anonymous",
         username: userData.login,
         email: emailObj.email,
         password: "",
@@ -135,7 +135,12 @@ export const finishGithubLogin = async (req, res) => {
   }
 };
 
-export const edit = (req, res) => res.send("Edit Uesr");
+export const getEdit = (req, res) => {
+  return res.render("edit-profile", { pageTitle: "Edit Profile" });
+};
+export const postEdit = (req, res) => {
+  return res.render("edit-profile");
+};
 
 export const logout = (req, res) => {
   req.session.destroy();

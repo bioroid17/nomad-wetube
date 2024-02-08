@@ -15,7 +15,7 @@
   \*******************************/
 /***/ (() => {
 
-eval("const hello = async () => {\n  alert(\"Hi! It's working\");\n  const x = await fetch(\"\");\n};\nhello();\n\n//# sourceURL=webpack://wetube/./src/client/js/main.js?");
+eval("alert(\"Hi!\");\n\n//# sourceURL=webpack://wetube/./src/client/js/main.js?");
 
 /***/ })
 

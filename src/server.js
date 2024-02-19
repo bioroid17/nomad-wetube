@@ -1,6 +1,7 @@
 import express from "express"; // "express"라는 패키지를 express라는 이름으로 import함
 import morgan from "morgan"; // "morgan"으로부터 import만 가능하면 이름은 상관없음
 import session from "express-session";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter"; // 이름은 상관없음
 import videoRouter from "./routers/videoRouter";
@@ -24,7 +25,7 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
 );
-
+app.use(flash());
 app.use((req, res, next) => {
   res.header("Cross-Origin-Embedder-Policy", "require-corp");
   res.header("Cross-Origin-Opener-Policy", "same-origin");

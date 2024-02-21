@@ -99,16 +99,18 @@ const handleMouseLeave = () => {
 };
 
 const handleVideoClick = () => {
+  videoContainer.focus();
   handlePlayClick();
 };
 const handleKeydown = (event) => {
-  if (event.code === "Space") {
+  event.preventDefault();
+  if (document.activeElement == video && event.code === "Space") {
     handlePlayClick();
   }
-  if (event.code === "KeyM") {
+  if (document.activeElement == video && event.code === "KeyM") {
     handleMute();
   }
-  if (event.code === "KeyF") {
+  if (document.activeElement == video && event.code === "KeyF") {
     handleFullscreen();
   }
 };
@@ -132,4 +134,4 @@ timeline.addEventListener("input", handleTimelineChange);
 fullScreenBtn.addEventListener("click", handleFullscreen);
 
 video.addEventListener("click", handleVideoClick);
-document.addEventListener("keydown", handleKeydown);
+video.addEventListener("keydown", handleKeydown);

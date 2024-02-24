@@ -75,4 +75,12 @@ main {
     background-color: tomato;
     color: white;
   }
+  &.info {
+    background-color: royalblue;
+    color: white;
+  }
+  &.success {
+    background-color: forestgreen;
+    color: white;
+  }
 }

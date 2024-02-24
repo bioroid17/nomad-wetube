@@ -19,14 +19,14 @@ const deleteComment = async (event) => {
     li.remove();
   }
   if (response.status === 401) {
-    const div = document.createElement("div");
-    div.className = "comment-error";
-    div.innerText = "You're not authorized to delete this comment.";
-    div.style.color = "red";
-    if (!li.querySelector("div.comment-error")) {
+    let div = li.querySelector(".comment-error");
+    if (!div) {
+      div = document.createElement("div");
+      div.className = "comment-error";
+      div.innerText = "You're not authorized to delete this comment.";
+      div.style.color = "red";
       li.appendChild(div);
-    }
-    if (timeoutId) {
+    } else {
       clearTimeout(timeoutId);
       timeoutId = null;
     }

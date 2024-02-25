@@ -19,9 +19,21 @@
   }
 }
 
+.video__add-comments {
+  #commentForm {
+    max-width: max-content;
+    margin-top: 10px;
+    button {
+      margin-top: 10px;
+    }
+    border-color: azure;
+  }
+}
+
 .video__comments {
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-width: 320px;
   width: 100%;
   margin: 0 auto;
@@ -32,8 +44,21 @@
     background-color: white;
     color: black;
     margin-bottom: 10px;
-  }
-  .delete-comment:hover {
-    cursor: pointer;
+    width: 1100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .comment-text {
+      text-align: left;
+      width: 1050px;
+      word-wrap: break-word;
+    }
+    .delete-comment {
+      max-width: max-content;
+    }
+    .delete-comment:hover {
+      cursor: pointer;
+    }
   }
 }

@@ -46,14 +46,14 @@ export const postLogin = async (req, res) => {
   const pageTitle = "Log in";
   const user = await User.findOne({ username, socialOnly: false });
   if (!user) {
-    res.status(400).render("login", {
+    return res.status(400).render("login", {
       pageTitle,
       errorMessage: "An account with this username does not exists.",
     });
   }
   const ok = await bcrypt.compare(password, user.password);
   if (!ok) {
-    res.status(400).render("login", {
+    return res.status(400).render("login", {
       pageTitle,
       errorMessage: "Wrong password",
     });
@@ -146,6 +146,7 @@ export const postEdit = async (req, res) => {
     body: { name, email, username, location },
     file,
   } = req;
+
   if (sessionEmail !== email) {
     if (await User.exists({ email })) {
       return res.render("edit-profile", {
@@ -166,7 +167,7 @@ export const postEdit = async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl: file ? file.location : avatarUrl,
       name,
       email,
       username,

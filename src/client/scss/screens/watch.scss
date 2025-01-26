@@ -77,6 +77,10 @@
       justify-self: center;
       align-self: start;
     }
+    .comment__data {
+      font-size: 12px;
+      color: gray;
+    }
     .delete-comment {
       grid-row: span 2;
       justify-self: center;

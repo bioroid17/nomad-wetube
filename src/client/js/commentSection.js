@@ -36,22 +36,27 @@ const deleteComment = async (event) => {
   }
 };
 
-const addComment = (text, id) => {
+const addComment = (text, id, username) => {
   const videoComments = document.querySelector(".video__comments ul");
   const newComment = document.createElement("li");
   newComment.dataset.id = id;
   newComment.className = "video__comment";
   const icon = document.createElement("i");
   icon.className = "fas fa-comment";
+  const div1 = document.createElement("div");
+  div1.className = "comment__data";
+  div1.innerText = `${username + " • " + String(new Date()).slice(4, 24)}`;
+  const div2 = document.createElement("div");
+  div2.className = "comment";
+  div2.innerText = ` ${text}`;
   const span = document.createElement("span");
-  span.innerText = ` ${text}`;
-  const span2 = document.createElement("span");
-  span2.className = "delete-comment";
-  span2.innerText = "❌";
-  span2.addEventListener("click", deleteComment);
+  span.className = "delete-comment";
+  span.innerText = "❌";
+  span.addEventListener("click", deleteComment);
   newComment.appendChild(icon);
+  newComment.appendChild(div1);
   newComment.appendChild(span);
-  newComment.appendChild(span2);
+  newComment.appendChild(div2);
   videoComments.prepend(newComment);
 };
 
@@ -71,8 +76,8 @@ const handleSubmit = async (event) => {
   });
   if (response.status === 201) {
     textarea.value = "";
-    const { newCommentId } = await response.json();
-    addComment(text, newCommentId);
+    const { newComment, username } = await response.json();
+    addComment(text, newComment._id, username);
   }
 };
 

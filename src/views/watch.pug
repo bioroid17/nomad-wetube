@@ -22,13 +22,14 @@ block content
 	
 	div.video__data
 		p.video__title=video.title
+		div.video__mutate
+			if String(video.owner._id) === String(loggedInUser._id)
+				a(href=`${video.id}/edit`) Edit Video &rarr;
+				a(href=`${video.id}/delete`) Delete Video &rarr;
+		
 		small.video__owner Uploaded by 
 			a(href=`/users/${video.owner._id}`)=video.owner.name
 		small.video__createdAt=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
-		if String(video.owner._id) === String(loggedInUser._id)
-			a(href=`${video.id}/edit`) Edit Video &rarr;
-			br
-			a(href=`${video.id}/delete`) Delete Video &rarr;
 
 	if loggedIn
 		div.video__add-comments
@@ -40,9 +41,12 @@ block content
 			each comment in video.comments.reverse()
 				li.video__comment(data-id=comment.id)
 					i.fas.fa-comment 
-					span  #{comment.text}
+					div.comment__data #{comment.owner.username + ' • ' + String(comment.createdAt).slice(4, 24)}
 					if String(comment.owner._id) === String(loggedInUser._id)
 						span.delete-comment ❌
+					else 
+						span
+					div.comment=comment.text
 
 
 block scripts 

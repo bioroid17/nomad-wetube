@@ -1,6 +1,8 @@
 #videoContainer {
   width: 100%;
   position: relative;
+  border-radius: 10px;
+  overflow: hidden;
   video {
     width: 100%;
   }

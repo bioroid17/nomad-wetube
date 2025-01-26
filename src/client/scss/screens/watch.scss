@@ -1,10 +1,20 @@
 .video__data {
   margin-top: 20px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 3fr 1fr;
+  gap: 5px;
   .video__title {
     font-size: 26px;
-    margin-bottom: 5px;
+  }
+  .video__mutate {
+    grid-row: span 3;
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 5px;
   }
   .video__createdAt {
     font-size: 12px;
@@ -18,22 +28,62 @@
     }
   }
 }
-
+.video__add-comments {
+  width: 100%;
+  #commentForm {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    gap: 20px;
+    max-width: none;
+    height: 40px;
+    textarea {
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid black;
+      resize: none;
+    }
+    button {
+      width: max-content;
+      padding: 10px;
+      border-radius: 100px;
+      background-color: cornflowerblue;
+      color: white;
+      border: none;
+      margin-top: 10px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
 .video__comments {
   display: flex;
   flex-direction: column;
-  max-width: 320px;
   width: 100%;
   margin: 0 auto;
   margin-top: 20px;
   .video__comment {
     padding: 10px;
-    border-radius: 99999px;
+    border-radius: 10px;
     background-color: white;
     color: black;
     margin-bottom: 10px;
-  }
-  .delete-comment:hover {
-    cursor: pointer;
+    display: grid;
+    grid-template-columns: 25px 1fr 25px;
+    grid-template-rows: 1fr 1fr;
+    i {
+      grid-row: span 2;
+      justify-self: center;
+      align-self: start;
+    }
+    .delete-comment {
+      grid-row: span 2;
+      justify-self: center;
+      align-self: start;
+    }
+    .delete-comment:hover {
+      cursor: pointer;
+    }
   }
 }
